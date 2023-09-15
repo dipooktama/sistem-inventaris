@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navHide {
+    @apply w-0 opacity-0 -translate-x-full overflow-hidden;
+}
+
+.navShow {
+    @apply w-64 opacity-100 translate-x-0;
+}

@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class DeviceActivity extends Model
 {
-    use HasFactory;
+    //use HasFactory;
     protected $table = 'device_activity';
+    protected $primaryKey = 'id';
+    public $incrementing = false;
     protected $fillable = [
+        'id',
         'device_uuid',
         'activities',
-        'minutes',
-        'time_category',
-        'total_minutes_in_year',
+        'hasil',
     ];
 }

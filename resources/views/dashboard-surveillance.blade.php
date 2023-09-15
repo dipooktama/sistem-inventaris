@@ -9,7 +9,7 @@
     <div class="bg-white rounded-lg shadow-lg p-4 mt-4 w-full">
         <div class="flex flex-row justify justify-between">
             <h2 class="text-xl font-semibold mb-2">Data Summary</h2>
-            <a href="/communication/create">
+            <a href="{{ '/'.$group.'/create' }}">
             <button class="
                 mb-2 px-2 py-1
                 hover:bg-[#0e0e0e] hover:text-white
@@ -116,7 +116,7 @@
             const id = button.getAttribute('data-id'); // Retrieve the data-id attribute value from the clicked button
             document.getElementById('deleteModal').classList.remove('hidden');
             const form = document.getElementById('deleteForm');
-            form.action = `/communication/delete?device=${id}&group=communication`;
+            form.action = `/surveillance/delete?device=${id}&group=surveillance`;
         });
     });
 

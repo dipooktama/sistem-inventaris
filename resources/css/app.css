@@ -9,3 +9,7 @@
 .navShow {
     @apply w-64 opacity-100 translate-x-0;
 }
+
+.noCopy {
+    user-select: none;
+}

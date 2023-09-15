@@ -25,34 +25,75 @@ class DeviceController extends Controller
         ];
     }
 
-    public function create()
-    {
-        return view('devices.create', [
-            'siteName' => $this->siteName,
-            'navMenu' => $this->navMenu,
-        ]);
-    }
-
     public function store(Request $request) {
         try {
             Log::info($request);
             $validatedData = $request->validate([
-                'group' => 'required',
                 'name' => 'required',
-                'deviceGroup' => 'required'
+                'merk_type' => 'required',
+                'freq' => 'required',
             ]);
 
             $makeId = Uuid::generate();
-
             $validatedData['id'] = $makeId;
+
+            $validatedData['group'] = $request->input('group');
 
             Log::info($validatedData);
 
             Device::create($validatedData);
 
-            return redirect('/communication');
+            return redirect('/'.$request->input('group'))->with('success', 'the data is successfully inputted');
+        } catch(\Exception $e) {
+            Log::error($e);
+            return redirect()->back()->with('error', 'An error occurred while processing your request.');
         }
-        catch (\Exception $e) {
+    }
+
+    public function update(Request $request) {
+        try {
+            Log::info($request);
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'merk_type' => 'required',
+                'freq' => 'required',
+            ]);
+
+            $device_id = $request->input('device');
+
+            $device = Device::find($device_id);
+
+            if (!$device) {
+                return redirect('/'.$request->input('group'))->with('error', 'Device not found.');
+            }
+
+            Log::info($validatedData);
+
+            $device->update($validatedData);
+
+            return redirect('/'.$request->input('group'))->with('success', 'the data is successfully inputted');
+        } catch(\Exception $e) {
+            Log::error($e);
+            return redirect()->back()->with('error', 'An error occurred while processing your request.');
+        }
+    }
+
+    public function delete(Request $request) {
+        try {
+            Log::info($request);
+
+            $device_id = $request->input('device');
+
+            $deviceToBeDeleted = Device::findOrFail($device_id);
+
+            if(!$deviceToBeDeleted) {
+                return redirect('/'.$request->input('group'))->with('error', 'Device not found.');
+            }
+
+            $deviceToBeDeleted->delete();
+
+            return redirect('/'.$request->input('group'))->with('success', 'The Device had been deleted.');
+        } catch(\Exception $e) {
             Log::error($e);
             return redirect()->back()->with('error', 'An error occurred while processing your request.');
         }

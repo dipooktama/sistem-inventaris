@@ -9,7 +9,7 @@
     <div class="bg-white rounded-lg shadow-lg p-4 mt-4 w-full">
         <div class="flex flex-row justify justify-between">
             <h2 class="text-xl font-semibold mb-2">Data Summary</h2>
-            <a href="/communication/create">
+            <a href="{{ '/'.$group.'/create' }}">
             <button class="
                 mb-2 px-2 py-1
                 hover:bg-[#0e0e0e] hover:text-white
@@ -62,70 +62,70 @@
                                         Update
                                     </button>
                                 </a>
-                                <button id="deleteButton-{{ $index+1 }}" class="
-                                    border border-black
-                                    rounded-lg px-2 py-1 text-center
-                                    hover:bg-red-600 hover:text-white"
-                                    data-id="{{ $item['id'] }}"
-                                    >
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                                <<button id="deleteButton-{{ $index+1 }}" class="
+                                border border-black
+                                rounded-lg px-2 py-1 text-center
+                                hover:bg-red-600 hover:text-white"
+                                data-id="{{ $item['id'] }}"
+                                >
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 </div>
 
 <div id='deleteModal' class="container min-w-full fixed inset-0 flex items-center justify-center z-10 hidden">
-    <div class="fixed inset-0 bg-black opacity-50"></div>
-    <div class="bg-white p-6 rounded shadow-md z-10">
-        <div class="flex justify-center mb-4">
-            <p>Are you sure?</p>
-        </div>
-        <div class="flex justify-center gap-4 px-4">
-            <form id="deleteForm" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="
-                    rounded px-4 py-2
-                    outline outline-1 outline-green-400
-                    bg-white text-slate-800
-                    hover:bg-green-400 hover:text-slate-200"
-                >Delete</button>
-            </form>
-            <button class="
-                w-1/2 rounded px-4 py-2
-                outline outline-1 outline-red-400
-                bg-white text-slate-800
-                hover:bg-red-400 hover:text-slate-200"
-                onclick="cancelDelete()"
-            >No</button>
-        </div>
+<div class="fixed inset-0 bg-black opacity-50"></div>
+<div class="bg-white p-6 rounded shadow-md z-10">
+    <div class="flex justify-center mb-4">
+        <p>Are you sure?</p>
     </div>
+    <div class="flex justify-center gap-4 px-4">
+        <form id="deleteForm" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="
+                rounded px-4 py-2
+                outline outline-1 outline-green-400
+                bg-white text-slate-800
+                hover:bg-green-400 hover:text-slate-200"
+            >Delete</button>
+        </form>
+        <button class="
+            w-1/2 rounded px-4 py-2
+            outline outline-1 outline-red-400
+            bg-white text-slate-800
+            hover:bg-red-400 hover:text-slate-200"
+            onclick="cancelDelete()"
+        >No</button>
+    </div>
+</div>
 </div>
 
 <script>
-    const deleteButtons = document.querySelectorAll('[id^="deleteButton-"]'); // Select all buttons with IDs starting with "deleteButton-"
+const deleteButtons = document.querySelectorAll('[id^="deleteButton-"]'); // Select all buttons with IDs starting with "deleteButton-"
 
-    deleteButtons.forEach(function(button) {
-        button.addEventListener('click', async function() {
-            console.log('clicked');
-            const id = button.getAttribute('data-id'); // Retrieve the data-id attribute value from the clicked button
-            document.getElementById('deleteModal').classList.remove('hidden');
-            const form = document.getElementById('deleteForm');
-            form.action = `/communication/delete?device=${id}&group=communication`;
-        });
+deleteButtons.forEach(function(button) {
+    button.addEventListener('click', async function() {
+        console.log('clicked');
+        const id = button.getAttribute('data-id'); // Retrieve the data-id attribute value from the clicked button
+        document.getElementById('deleteModal').classList.remove('hidden');
+        const form = document.getElementById('deleteForm');
+        form.action = `/automation/delete?device=${id}&group=automation`;
     });
+});
 
-    async function hideDeleteModal() {
-        document.getElementById('deleteModal').classList.add('hidden');
-    }
+async function hideDeleteModal() {
+    document.getElementById('deleteModal').classList.add('hidden');
+}
 
-    async function cancelDelete() {
-        hideDeleteModal();
-    }
+async function cancelDelete() {
+    hideDeleteModal();
+}
 </script>
 @endsection

@@ -15,6 +15,7 @@ class Device extends Model
         'id',
         'group',
         'name',
-        'deviceGroup'
+        'merk_type',
+        'freq',
     ];
 }

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Device;
 use App\Models\DeviceActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Webpatser\Uuid\Uuid;
 
-class CommunicationController extends Controller
+class DeviceActivityController extends Controller
 {
     // TO DO: bikin supaya diakses dari dashboard controller aja:
     public $siteName;
@@ -30,24 +29,21 @@ class CommunicationController extends Controller
         try {
             Log::info($request);
             $validatedData = $request->validate([
-            'device_uuid' => 'required', // Validate UUID format
-            'activities' => 'required',
-            'minutes' => 'required|integer',
-            'time_category' => 'required|in:daily,weekly,monthly,yearly',
-            'total_minutes_in_year' => 'required|integer',
+                'activities' => 'required',
+                'hasil' => 'required',
             ]);
 
             $makeId = Uuid::generate();
-
             $validatedData['id'] = $makeId;
 
-            Log::info($validatedData);
+            $device_id = $request->input('device');
+            $validatedData['device_uuid'] = $device_id;
 
+            Log::info($validatedData);
             DeviceActivity::create($validatedData);
 
-            return redirect('/communication')->with('success', 'Device activity has been added.');
-        }
-        catch (\Exception $e) {
+            return redirect('/communication/detail?device=' . $device_id)->with('success', 'the data is successfully inputted');
+        } catch(\Exception $e) {
             Log::error($e);
             return redirect()->back()->with('error', 'An error occurred while processing your request.');
         }

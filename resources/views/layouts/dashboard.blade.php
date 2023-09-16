@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
     <title>{{ $siteName }}</title>
 </head>
-<body>
+<body class="bg-gray-100">
     @include('partials.topbar')
 
     <div class='container-fluid'>

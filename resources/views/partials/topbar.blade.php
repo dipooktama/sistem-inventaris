@@ -1,4 +1,4 @@
-<header class="px-4 py-4 flex justify justify-between items-center top-0 bg-gray-100 shadow-md">
+<header class="px-4 py-4 flex justify justify-between items-center top-0 bg-white shadow-md">
     <div class="flex">
         <button id="sidebarToggle"
             class="border mr-4 transition-all"

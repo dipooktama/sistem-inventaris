@@ -1,8 +1,9 @@
 <nav id="navSidebar" class="
-    flex flex-col bg-[#0e0e0e] grow
+    flex flex-col grow
     duration-500 text-gray-100
     min-h-full transition-all
     w-64 opacity-100 translate-x-0
+    bg-gradient-to-b from-[#085a9c] to-[#04244c]
 ">
     <h2 class="pl-4 pt-5 pb-3 font-extrabold text-lg">Menu</h2>
     <hr>

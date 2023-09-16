@@ -6,7 +6,7 @@
 <footer class="
     px-4 py-4 flex
     justify-between items-center
-    mb-0 mt-auto bg-gray-100 h-20
+    mb-0 mt-auto bg-white h-20
     relative drop-shadow-[0 -6px 4px rgba(0, 0, 0, 0.07)]
 ">
     <div class="flex items-center">

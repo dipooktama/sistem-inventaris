@@ -7,10 +7,14 @@
     @vite('resources/css/app.css')
     <title>{{ $siteName }}</title>
 </head>
-<body>
-    <main class="py-4 px-4 flex items-center justify-center min-h-screen">
-        <div class="bg-white rounded-lg shadow-lg p-4 mt-4 w-80 h-100">
-            <h1 class="text-3xl text-center font-semibold mb-2">Login</h1>
+<body class="bg-bgImageLogin bg-cover bg-center">
+    <main class="relative py-4 px-4 flex items-center justify-center min-h-screen">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative inset-1 bg-white rounded-lg shadow-lg p-4 mt-4 w-80 h-100">
+            <div class="flex justify-center items-center mt-4 mb-2">
+                <img src="{{ asset('/images/logo_airnav_small.jpg') }}" alt="Logo Airnav" />
+            </div>
+            <h1 class="text-3xl text-center font-semibold">Login</h1>
             <form action="#" method="POST" class="py-4 px-2 my-2 mx-2">
                 <label for="username" class="flex flex-col my-4">Username
                     <input type="text" name="username" id="username" placeholder="Username" required

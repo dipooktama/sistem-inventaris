@@ -7,7 +7,11 @@ export default {
         "./resources/**/*.vue",
       ],
   theme: {
-    extend: {},
+    extend: {
+        backgroundImage: (theme) => ({
+            'bgImageLogin': "url('/public/images/cover_w1920_h490_struct-org.jpg')",
+        }),
+    },
   },
   plugins: [],
 }

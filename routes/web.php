@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DeviceActivityController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [Dashboard::class, 'homeDashboard'])->name('dashboard.home');
+Route::get('/login', [LoginController::class, 'index']);
 
 Route::get('/communication', [Dashboard::class, 'comDashboard'])->name('dashboard.communication');
 Route::get('/communication/create', [Dashboard::class, 'comCreate'])->name('com.create');

@@ -15,7 +15,8 @@
                 <img src="{{ asset('/images/logo_airnav_small.jpg') }}" alt="Logo Airnav" />
             </div>
             <h1 class="text-3xl text-center font-semibold">Login</h1>
-            <form action="#" method="POST" class="py-4 px-2 my-2 mx-2">
+            <form action="{{ route('login.attempt') }}" method="POST" class="py-4 px-2 my-2 mx-2">
+                @csrf
                 <label for="username" class="flex flex-col my-4">Username
                     <input type="text" name="username" id="username" placeholder="Username" required
                         class="border border-black rounded"/>

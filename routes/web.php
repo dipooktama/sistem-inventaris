@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [Dashboard::class, 'homeDashboard'])->name('dashboard.home');
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.attempt');
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/communication', [Dashboard::class, 'comDashboard'])->name('dashboard.communication');
 Route::get('/communication/create', [Dashboard::class, 'comCreate'])->name('com.create');

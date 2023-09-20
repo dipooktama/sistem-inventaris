@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\DeviceActivityController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,6 +72,10 @@ Route::post('/support/storeActivity', [DeviceActivityController::class, 'store']
 Route::get('/support/update', [Dashboard::class, 'update']);
 Route::post('/support/update', [DeviceController::class, 'update'])->name('supp.update');
 Route::delete('/support/delete', [DeviceController::class, 'delete'])->name('supp.delete');
+
+Route::get('/admin/user', [UserController::class, 'index'])->name('admin.user');
+Route::get('/admin/user/create', [UserController::class, 'create'])->name('admin.create');
+Route::post('/admin/user/store', [UserController::class, 'store'])->name('admin.store');
 
 Route::get('/device/create', [DeviceController::class, 'create'])->name('device.create');
 Route::post('/device/store', [DeviceController::class, 'store'])->name('device.store');

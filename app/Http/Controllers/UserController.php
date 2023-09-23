@@ -78,6 +78,38 @@ class UserController extends Controller
         }
     }
 
+    public function updateAction(Request $request) {
+        try {
+            Log::info($request);
+            $validatedData = $request->validate([
+                'username' => 'required',
+                'password' => 'required',
+                'name' => 'required',
+                'position' => 'nullable',
+                'role' => 'required',
+            ]);
+            $user_id = $request->input('userId');
+
+            $makePassword = Hash::make($validatedData['password']);
+            $validatedData['password'] = $makePassword;
+
+            $userToBeUpdated = User::find($user_id);
+
+            if(!$userToBeUpdated) {
+                return redirect('/admin/user/update')->with('error', 'user not found');
+            }
+
+            Log::info($validatedData);
+
+            $userToBeUpdated->update($validatedData);
+
+            return redirect('admin/user')->with('success', 'user had been updated');
+        } catch(\Exception $e) {
+            Log::error($e);
+            return redirect()->back()->with('error', 'An error occurred while processing your request.');
+        }
+    }
+
     public function delete(Request $request) {
         try {
             Log::info($request);

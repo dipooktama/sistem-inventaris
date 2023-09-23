@@ -78,6 +78,23 @@ class UserController extends Controller
         }
     }
 
+    public function update(Request $request){
+        $user_id = $request->input('userId');
+
+        if($user_id){
+            $actionUrl = 'admin/user/update?userId='.$user_id;
+            $userData = User::findOrFail($user_id);
+
+            return view('user.edit', [
+                'siteName' => $this->siteName,
+                'navMenu' => $this->navMenu,
+                'group' => $this->group,
+                'actionUrl' => $actionUrl,
+                'userValues' => $userData,
+            ]);
+        }
+    }
+
     public function updateAction(Request $request) {
         try {
             Log::info($request);

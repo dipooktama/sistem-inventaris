@@ -93,6 +93,8 @@ class UserController extends Controller
                 'userValues' => $userData,
             ]);
         }
+
+        return redirect('/admin/user')->with('error', 'user not found');
     }
 
     public function updateAction(Request $request) {

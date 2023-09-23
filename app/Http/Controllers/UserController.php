@@ -91,6 +91,7 @@ class UserController extends Controller
                 'group' => $this->group,
                 'actionUrl' => $actionUrl,
                 'userValues' => $userData,
+                'listRole' => ['user', 'admin'],
             ]);
         }
 
@@ -102,15 +103,15 @@ class UserController extends Controller
             Log::info($request);
             $validatedData = $request->validate([
                 'username' => 'required',
-                'password' => 'required',
+                //'password' => 'required',
                 'name' => 'required',
                 'position' => 'nullable',
                 'role' => 'required',
             ]);
             $user_id = $request->input('user');
 
-            $makePassword = Hash::make($validatedData['password']);
-            $validatedData['password'] = $makePassword;
+            //$makePassword = Hash::make($validatedData['password']);
+            //$validatedData['password'] = $makePassword;
 
             $userToBeUpdated = User::find($user_id);
 

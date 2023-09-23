@@ -77,4 +77,26 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'An error occurred while processing your request.');
         }
     }
+
+    public function delete(Request $request) {
+        try {
+            Log::info($request);
+
+            $user_id = $request->input('userId');
+
+            $userToBeDeleted = User::findOrFail($user_id);
+
+            if(!$userToBeDeleted) {
+                return redirect('/admin/user')->with('error', 'user not found');
+            }
+
+            $userToBeDeleted->delete();
+
+            return redirect('/admin/user')->with('success', 'the user had been deleted');
+        } catch(\Exception $e) {
+            Log::error($e);
+            return redirect()->back()->with('error', 'An error occurred while processing your request.');
+        }
+
+    }
 }

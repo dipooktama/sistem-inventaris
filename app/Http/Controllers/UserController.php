@@ -79,7 +79,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
-        $user_id = $request->input('userId');
+        $user_id = $request->input('user');
 
         if($user_id){
             $actionUrl = 'admin/user/update?userId='.$user_id;
@@ -105,7 +105,7 @@ class UserController extends Controller
                 'position' => 'nullable',
                 'role' => 'required',
             ]);
-            $user_id = $request->input('userId');
+            $user_id = $request->input('user');
 
             $makePassword = Hash::make($validatedData['password']);
             $validatedData['password'] = $makePassword;
@@ -131,7 +131,7 @@ class UserController extends Controller
         try {
             Log::info($request);
 
-            $user_id = $request->input('userId');
+            $user_id = $request->input('user');
 
             $userToBeDeleted = User::findOrFail($user_id);
 

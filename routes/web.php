@@ -76,6 +76,8 @@ Route::delete('/support/delete', [DeviceController::class, 'delete'])->name('sup
 Route::get('/admin/user', [UserController::class, 'index'])->name('admin.user');
 Route::get('/admin/user/create', [UserController::class, 'create'])->name('admin.create');
 Route::post('/admin/user/store', [UserController::class, 'store'])->name('admin.store');
+Route::post('/admin/user/update', [UserController::class, 'update'])->name('admin.update');
+Route::delete('/admin/user/delete', [UserController::class, 'delete'])->name('admin.delete');
 
 Route::get('/device/create', [DeviceController::class, 'create'])->name('device.create');
 Route::post('/device/store', [DeviceController::class, 'store'])->name('device.store');
